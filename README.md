@@ -39,6 +39,10 @@ flowchart TD
     J -->|at goal| K["Delivered"]
 ```
 
+## Live demo (no installation)
+
+Open **https://kaizerdestroyer.github.io/campus-delivery-robot/** in any modern browser. The real Python code runs in the page via [stlite](https://github.com/whitphx/stlite) (Streamlit on WebAssembly); the first load takes about 30–60 seconds and needs an internet connection. Rebuild with `python tools/build_web.py`.
+
 ## Quick start
 
 ```bash
