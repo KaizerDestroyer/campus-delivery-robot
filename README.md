@@ -165,4 +165,5 @@ See the [technical report](docs/TECHNICAL_REPORT.md) for the analysis and future
 - [Contribution statement](docs/CONTRIBUTION_STATEMENT.md)
 - [Demo video script](docs/DEMO_VIDEO_SCRIPT.md)
 - [Presentation slides (PDF, Russian)](docs/PRESENTATION_RU.pdf)
+- [Demo video (2:15, Russian narration)](docs/DEMO_VIDEO.mp4)
 - [Experiment results](results/RESULTS.md)
