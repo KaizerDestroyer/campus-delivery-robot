@@ -1,0 +1,133 @@
+{
+  "search_random": {
+    "maps": 500,
+    "A*": {
+      "expanded": 24987,
+      "optimal": 500
+    },
+    "UCS (Dijkstra)": {
+      "expanded": 72809,
+      "optimal": 500
+    },
+    "BFS": {
+      "expanded": 72878,
+      "optimal": 500
+    },
+    "Greedy": {
+      "expanded": 21257,
+      "optimal": 184
+    }
+  },
+  "policies": {
+    "Campus 9x12": {
+      "naive": {
+        "policy": "naive",
+        "success_rate": 1.0,
+        "avg_ticks": 21.173,
+        "avg_collisions": 2.173,
+        "collision_free_rate": 0.379,
+        "avg_waits": 0.0,
+        "avg_reroutes": 0.0,
+        "avg_cost": 129.823
+      },
+      "reactive": {
+        "policy": "reactive",
+        "success_rate": 1.0,
+        "avg_ticks": 26.386,
+        "avg_collisions": 0.238,
+        "collision_free_rate": 0.808,
+        "avg_waits": 7.148,
+        "avg_reroutes": 0.0,
+        "avg_cost": 38.286
+      },
+      "bayes": {
+        "policy": "bayes",
+        "success_rate": 1.0,
+        "avg_ticks": 22.034,
+        "avg_collisions": 0.524,
+        "collision_free_rate": 0.634,
+        "avg_waits": 2.51,
+        "avg_reroutes": 0.0,
+        "avg_cost": 48.234
+      },
+      "bayes_mdp": {
+        "policy": "bayes_mdp",
+        "success_rate": 1.0,
+        "avg_ticks": 28.798,
+        "avg_collisions": 0.139,
+        "collision_free_rate": 0.876,
+        "avg_waits": 7.764,
+        "avg_reroutes": 1.277,
+        "avg_cost": 35.748
+      }
+    },
+    "Classic 5x5": {
+      "naive": {
+        "policy": "naive",
+        "success_rate": 1.0,
+        "avg_ticks": 9.127,
+        "avg_collisions": 1.127,
+        "collision_free_rate": 0.586,
+        "avg_waits": 0.0,
+        "avg_reroutes": 0.0,
+        "avg_cost": 65.477
+      },
+      "reactive": {
+        "policy": "reactive",
+        "success_rate": 1.0,
+        "avg_ticks": 11.14,
+        "avg_collisions": 0.092,
+        "collision_free_rate": 0.912,
+        "avg_waits": 3.048,
+        "avg_reroutes": 0.0,
+        "avg_cost": 15.74
+      },
+      "bayes": {
+        "policy": "bayes",
+        "success_rate": 1.0,
+        "avg_ticks": 9.432,
+        "avg_collisions": 0.21,
+        "collision_free_rate": 0.819,
+        "avg_waits": 1.222,
+        "avg_reroutes": 0.0,
+        "avg_cost": 19.932
+      },
+      "bayes_mdp": {
+        "policy": "bayes_mdp",
+        "success_rate": 1.0,
+        "avg_ticks": 12.433,
+        "avg_collisions": 0.049,
+        "collision_free_rate": 0.952,
+        "avg_waits": 1.917,
+        "avg_reroutes": 0.957,
+        "avg_cost": 14.883
+      }
+    }
+  },
+  "sensitivity": {
+    "5": {
+      "naive": 32.038,
+      "reactive": 27.576,
+      "bayes": 24.654,
+      "bayes_mdp": 24.518
+    },
+    "20": {
+      "naive": 64.633,
+      "reactive": 31.146,
+      "bayes": 32.514,
+      "bayes_mdp": 31.307
+    },
+    "50": {
+      "naive": 129.823,
+      "reactive": 38.286,
+      "bayes": 48.234,
+      "bayes_mdp": 35.748
+    },
+    "100": {
+      "naive": 238.473,
+      "reactive": 50.186,
+      "bayes": 74.434,
+      "bayes_mdp": 43.534
+    }
+  }
+}

@@ -1,0 +1,10 @@
+[project]
+name = "campus-delivery-robot"
+version = "2.0.0"
+description = "AI Fundamentals final project: A* search + Bayes filter + MDP value iteration"
+requires-python = ">=3.10"
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
+addopts = "-q"
