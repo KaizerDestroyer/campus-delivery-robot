@@ -163,12 +163,13 @@ with st.sidebar:
     seed = int(st.number_input("Random seed (world)", min_value=0, max_value=100_000, value=5,
                                step=1, key="seed",
                                help="Same seed = same hidden obstacles for every policy."))
-    with st.expander("Sensor model", expanded=True):
+    with st.expander("⚙️ Advanced model parameters", expanded=False):
+        st.caption("The defaults reproduce every number in the report. "
+                   "Change them only to explore what-if scenarios.")
         sens = st.slider("Sensitivity  P(alert | blocked)", 0.50, 1.00, 0.90, 0.01, key="sens")
         fa = st.slider("False alarm  P(alert | clear)", 0.00, 0.50, 0.20, 0.01, key="fa")
         if sens <= fa:
             st.warning("Sensitivity ≤ false-alarm rate: the sensor carries no useful information.")
-    with st.expander("World and rewards", expanded=True):
         hot = st.slider("Hotspot obstacle risk  P(blocked)", 0.05, 0.80, 0.30, 0.01, key="hot")
         collision = float(st.slider("Collision penalty", 0, 200, 50, 5, key="collision"))
         gamma = st.slider("Discount factor γ", 0.50, 0.99, 0.95, 0.01, key="gamma")
@@ -244,6 +245,22 @@ def _shift_step(delta: int, n: int) -> None:
     st.session_state.step = min(max(st.session_state.step + delta, 1), n)
 
 
+def _jump_to(step: int) -> None:
+    st.session_state.step = step
+
+
+def key_moments(log, limit: int = 4) -> list[tuple[int, str]]:
+    """Steps worth showing in a demo: every non-trivial decision, then the finish."""
+    moments = []
+    for i, s in enumerate(log, 1):
+        if s.alert or s.outcome != "moved":
+            moments.append((i, f"t={s.tick} · {s.action}"
+                               + (" 💥" if s.outcome == "collision" else "")))
+    moments = moments[:limit]
+    moments.append((len(log), "🏁 Finish"))
+    return moments
+
+
 with tab_mission:
     ep = cached_episode(map_name, hot, policy, seed, sens, fa, collision, gamma, mixing)
     n = len(ep.log)
@@ -264,6 +281,15 @@ with tab_mission:
             st.session_state.episode_sig = signature
             st.session_state.step = 1
         st.session_state.step = min(max(int(st.session_state.get("step", 1)), 1), n)
+
+        moments = key_moments(ep.log)
+        st.markdown("**Key moments** — click one to jump straight to that decision, "
+                    "or use **Next ▶** to step through the whole delivery:")
+        cols = st.columns(len(moments))
+        for col, (step_no, label) in zip(cols, moments):
+            col.button(label, key=f"moment_{step_no}", on_click=_jump_to, args=(step_no,),
+                       type="primary" if st.session_state.step == step_no else "secondary",
+                       width="stretch")
 
         left, right = st.columns([1.15, 1], gap="large")
         with left:
